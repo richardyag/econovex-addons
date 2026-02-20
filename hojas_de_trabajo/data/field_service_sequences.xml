@@ -2,7 +2,7 @@
 <odoo>
     <record id="seq_field_service_order" model="ir.sequence">
         <field name="name">Orden de Servicio en Campo</field>
-        <field name="code">field.service.order</field>
+        <field name="code">hdt.service.order</field>
         <field name="prefix">FSO/%(year)s/</field>
         <field name="padding">5</field>
         <field name="number_next">1</field>
@@ -13,7 +13,7 @@
 
     <record id="seq_field_service_receipt" model="ir.sequence">
         <field name="name">Recibo de Servicio en Campo</field>
-        <field name="code">field.service.receipt</field>
+        <field name="code">hdt.service.receipt</field>
         <field name="prefix">REC/%(year)s/</field>
         <field name="padding">5</field>
         <field name="number_next">1</field>

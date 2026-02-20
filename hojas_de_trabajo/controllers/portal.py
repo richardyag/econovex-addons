@@ -18,7 +18,7 @@ class FieldServicePortal(CustomerPortal):
         if 'fso_count' in counters:
             domain = self._get_fso_domain()
             values['fso_count'] = (
-                request.env['field.service.order'].search_count(domain)
+                request.env['hdt.service.order'].search_count(domain)
             )
         return values
 
@@ -35,7 +35,7 @@ class FieldServicePortal(CustomerPortal):
     )
     def portal_my_field_service(self, page=1, sortby=None, filterby=None, **kw):
         domain = self._get_fso_domain()
-        FSO = request.env['field.service.order']
+        FSO = request.env['hdt.service.order']
 
         searchbar_sortings = {
             'date':  {'label': _('Fecha programada'), 'order': 'scheduled_date desc'},
@@ -186,7 +186,7 @@ class FieldServicePortal(CustomerPortal):
             'price_unit': price_unit,
             'tax_ids': [(6, 0, tax_ids)],
         }
-        request.env['field.service.line'].sudo().create(line_vals)
+        request.env['hdt.service.line'].sudo().create(line_vals)
         return request.redirect('/my/field-service/%s' % order_id)
 
     @http.route(
@@ -196,7 +196,7 @@ class FieldServicePortal(CustomerPortal):
     def portal_fso_remove_line(self, order_id, line_id, access_token=None, **kw):
         order_sudo = self._fso_check_access(order_id, access_token)
         self._check_is_technician(order_sudo)
-        line = request.env['field.service.line'].sudo().browse(line_id)
+        line = request.env['hdt.service.line'].sudo().browse(line_id)
         if line.exists() and line.order_id.id == order_sudo.id:
             if not line.sale_order_line_id:
                 line.unlink()
@@ -289,7 +289,7 @@ class FieldServicePortal(CustomerPortal):
                 '/my/field-service/%s?error=El importe debe ser mayor a cero' % order_id
             )
 
-        pay = request.env['field.service.payment'].sudo().create({
+        pay = request.env['hdt.service.payment'].sudo().create({
             'order_id': order_sudo.id,
             'payment_method': method,
             'amount': amount,
@@ -358,7 +358,7 @@ class FieldServicePortal(CustomerPortal):
         """Verifica acceso y retorna el record con sudo si autorizado."""
         try:
             order_sudo = self._document_check_access(
-                'field.service.order', order_id, access_token=access_token
+                'hdt.service.order', order_id, access_token=access_token
             )
         except (AccessError, MissingError):
             raise AccessError(_('No tienes acceso a esta orden de servicio.'))

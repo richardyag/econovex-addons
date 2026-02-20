@@ -4,12 +4,12 @@ from odoo.exceptions import UserError
 
 
 class FieldServicePayment(models.Model):
-    _name = 'field.service.payment'
+    _name = 'hdt.service.payment'
     _description = 'Pago Registrado en Campo'
     _order = 'date desc, id desc'
 
     order_id = fields.Many2one(
-        'field.service.order', string='Orden', required=True,
+        'hdt.service.order', string='Orden', required=True,
         ondelete='cascade', index=True
     )
     name = fields.Char(

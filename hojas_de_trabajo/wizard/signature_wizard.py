@@ -5,11 +5,11 @@ from odoo.exceptions import UserError
 
 class FsoSignatureWizard(models.TransientModel):
     """Wizard para capturar firma del cliente desde el backend."""
-    _name = 'fso.signature.wizard'
+    _name = 'hdt.signature.wizard'
     _description = 'Captura de Firma del Cliente'
 
     order_id = fields.Many2one(
-        'field.service.order', string='Orden', required=True, ondelete='cascade'
+        'hdt.service.order', string='Orden', required=True, ondelete='cascade'
     )
     order_name = fields.Char(related='order_id.name', string='Orden Ref.')
     partner_name = fields.Char(related='order_id.partner_id.name', string='Cliente')

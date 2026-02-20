@@ -4,7 +4,7 @@ from odoo.exceptions import UserError, AccessError
 
 
 class FieldServiceOrder(models.Model):
-    _name = 'field.service.order'
+    _name = 'hdt.service.order'
     _description = 'Orden de Servicio en Campo'
     _inherit = ['mail.thread', 'mail.activity.mixin', 'portal.mixin']
     _order = 'scheduled_date desc, id desc'
@@ -115,11 +115,11 @@ class FieldServiceOrder(models.Model):
 
     # ─── Líneas y pagos ───────────────────────────────────────────────────────
     line_ids = fields.One2many(
-        'field.service.line', 'order_id',
+        'hdt.service.line', 'order_id',
         string='Materiales y Servicios'
     )
     payment_ids = fields.One2many(
-        'field.service.payment', 'order_id',
+        'hdt.service.payment', 'order_id',
         string='Pagos'
     )
 
@@ -162,7 +162,7 @@ class FieldServiceOrder(models.Model):
         for vals in vals_list:
             if vals.get('name', 'Nuevo') == 'Nuevo':
                 vals['name'] = (
-                    self.env['ir.sequence'].next_by_code('field.service.order')
+                    self.env['ir.sequence'].next_by_code('hdt.service.order')
                     or 'Nuevo'
                 )
         return super().create(vals_list)
@@ -301,7 +301,7 @@ class FieldServiceOrder(models.Model):
         return {
             'type': 'ir.actions.act_window',
             'name': _('Capturar Firma del Cliente'),
-            'res_model': 'fso.signature.wizard',
+            'res_model': 'hdt.signature.wizard',
             'view_mode': 'form',
             'target': 'new',
             'context': {'default_order_id': self.id},
@@ -355,6 +355,6 @@ class FieldServiceOrder(models.Model):
         for order in self:
             if not order.receipt_number:
                 order.receipt_number = (
-                    self.env['ir.sequence'].next_by_code('field.service.receipt')
+                    self.env['ir.sequence'].next_by_code('hdt.service.receipt')
                     or '/'
                 )

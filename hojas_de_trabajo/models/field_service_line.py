@@ -3,12 +3,12 @@ from odoo import models, fields, api
 
 
 class FieldServiceLine(models.Model):
-    _name = 'field.service.line'
+    _name = 'hdt.service.line'
     _description = 'Línea de Orden de Servicio'
     _order = 'sequence, id'
 
     order_id = fields.Many2one(
-        'field.service.order', string='Orden', required=True,
+        'hdt.service.order', string='Orden', required=True,
         ondelete='cascade', index=True
     )
     sequence = fields.Integer(default=10)

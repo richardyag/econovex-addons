@@ -5,8 +5,8 @@
          VISTA FORMULARIO – Orden de Servicio
     ═══════════════════════════════════════════════════════════════════════ -->
     <record id="view_fso_form" model="ir.ui.view">
-        <field name="name">field.service.order.form</field>
-        <field name="model">field.service.order</field>
+        <field name="name">hdt.service.order.form</field>
+        <field name="model">hdt.service.order</field>
         <field name="arch" type="xml">
             <form string="Orden de Servicio">
                 <header>
@@ -229,8 +229,8 @@
          VISTA LISTA
     ═══════════════════════════════════════════════════════════════════════ -->
     <record id="view_fso_tree" model="ir.ui.view">
-        <field name="name">field.service.order.tree</field>
-        <field name="model">field.service.order</field>
+        <field name="name">hdt.service.order.tree</field>
+        <field name="model">hdt.service.order</field>
         <field name="arch" type="xml">
             <list string="Órdenes de Servicio"
                   decoration-muted="state == 'cancelled'"
@@ -258,8 +258,8 @@
          VISTA KANBAN
     ═══════════════════════════════════════════════════════════════════════ -->
     <record id="view_fso_kanban" model="ir.ui.view">
-        <field name="name">field.service.order.kanban</field>
-        <field name="model">field.service.order</field>
+        <field name="name">hdt.service.order.kanban</field>
+        <field name="model">hdt.service.order</field>
         <field name="arch" type="xml">
             <kanban default_group_by="state" class="o_kanban_small_column"
                     records_draggable="0">
@@ -312,8 +312,8 @@
          VISTA BÚSQUEDA
     ═══════════════════════════════════════════════════════════════════════ -->
     <record id="view_fso_search" model="ir.ui.view">
-        <field name="name">field.service.order.search</field>
-        <field name="model">field.service.order</field>
+        <field name="name">hdt.service.order.search</field>
+        <field name="model">hdt.service.order</field>
         <field name="arch" type="xml">
             <search string="Buscar Órdenes de Servicio">
                 <field name="name" string="Referencia"/>
@@ -362,7 +362,7 @@
     ═══════════════════════════════════════════════════════════════════════ -->
     <record id="action_field_service_orders" model="ir.actions.act_window">
         <field name="name">Órdenes de Servicio</field>
-        <field name="res_model">field.service.order</field>
+        <field name="res_model">hdt.service.order</field>
         <field name="view_mode">kanban,list,form</field>
         <field name="search_view_id" ref="view_fso_search"/>
         <field name="context">{'search_default_my_orders': 1}</field>
@@ -380,7 +380,7 @@
     <!-- Vista de mis asignaciones (para técnicos internos) -->
     <record id="action_fso_my_assignments" model="ir.actions.act_window">
         <field name="name">Mis Órdenes Asignadas</field>
-        <field name="res_model">field.service.order</field>
+        <field name="res_model">hdt.service.order</field>
         <field name="view_mode">list,kanban,form</field>
         <field name="domain">[('technician_id', '=', uid)]</field>
         <field name="context">{'search_default_in_progress': 1}</field>
@@ -390,8 +390,8 @@
          WIZARD FIRMA
     ═══════════════════════════════════════════════════════════════════════ -->
     <record id="view_fso_signature_wizard" model="ir.ui.view">
-        <field name="name">fso.signature.wizard.form</field>
-        <field name="model">fso.signature.wizard</field>
+        <field name="name">hdt.signature.wizard.form</field>
+        <field name="model">hdt.signature.wizard</field>
         <field name="arch" type="xml">
             <form string="Capturar Firma del Cliente">
                 <sheet>

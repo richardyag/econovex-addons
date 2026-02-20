@@ -35,7 +35,7 @@
     <!-- Gerente: ve todo -->
     <record id="rule_fso_manager_all" model="ir.rule">
         <field name="name">FSO: Gerente ve todo</field>
-        <field name="model_id" ref="model_field_service_order"/>
+        <field name="model_id" ref="model_hdt_service_order"/>
         <field name="groups" eval="[(4, ref('group_field_service_manager'))]"/>
         <field name="domain_force">[(1, '=', 1)]</field>
         <field name="perm_read" eval="True"/>
@@ -47,7 +47,7 @@
     <!-- Usuario: ve sus propias + las asignadas -->
     <record id="rule_fso_user_own" model="ir.rule">
         <field name="name">FSO: Usuario ve sus órdenes</field>
-        <field name="model_id" ref="model_field_service_order"/>
+        <field name="model_id" ref="model_hdt_service_order"/>
         <field name="groups" eval="[(4, ref('group_field_service_user'))]"/>
         <field name="domain_force">[
             '|',
@@ -63,7 +63,7 @@
     <!-- Portal (técnico): solo ve sus órdenes asignadas -->
     <record id="rule_fso_portal_technician" model="ir.rule">
         <field name="name">FSO: Técnico portal ve sus órdenes</field>
-        <field name="model_id" ref="model_field_service_order"/>
+        <field name="model_id" ref="model_hdt_service_order"/>
         <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
         <field name="domain_force">[('technician_id.partner_id', '=', user.partner_id.id)]</field>
         <field name="perm_read" eval="True"/>
@@ -75,7 +75,7 @@
     <!-- Líneas: portal puede leer líneas de sus órdenes -->
     <record id="rule_fsl_portal" model="ir.rule">
         <field name="name">FSL: Portal lee líneas de sus órdenes</field>
-        <field name="model_id" ref="model_field_service_line"/>
+        <field name="model_id" ref="model_hdt_service_line"/>
         <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
         <field name="domain_force">[
             ('order_id.technician_id.partner_id', '=', user.partner_id.id)
@@ -89,7 +89,7 @@
     <!-- Pagos: portal puede leer pagos de sus órdenes -->
     <record id="rule_fsp_portal" model="ir.rule">
         <field name="name">FSP: Portal lee pagos de sus órdenes</field>
-        <field name="model_id" ref="model_field_service_payment"/>
+        <field name="model_id" ref="model_hdt_service_payment"/>
         <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
         <field name="domain_force">[
             ('order_id.technician_id.partner_id', '=', user.partner_id.id)
